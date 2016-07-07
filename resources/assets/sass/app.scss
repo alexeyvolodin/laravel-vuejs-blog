@@ -1,2 +1,10 @@
-// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+/**
+* Main Files
+*/
+@import "dashboard";
+
+body {
+	padding-top: 60px;
+}
 
