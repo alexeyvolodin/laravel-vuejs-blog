@@ -17,8 +17,9 @@ Route::get('/', function () {
 
 Route::auth();
 
-Route::group(['namespace' => 'Admin'], function() {
-	Route::get('/dashboard', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@index']);
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
+	Route::get('dashboard', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@index']);
+	Route::resource('posts', 'PostsController');
 });
 
 
