@@ -3,7 +3,7 @@ export default{
    * Name of the component
    * More info: http://vuejs.org/api/#name
    */
-  name: 'Sidebar',
+  name: 'CsrfToken',
 
   /**
    * The data object for the component it self
@@ -11,14 +11,7 @@ export default{
    */
   data(){
     return {
-			items: [
-				{route: '/admin/dashboard', label: 'Dashboard'},
-				{route: '/admin/posts', label: 'Posts'},
-				{route: '#', label: 'Categories'},
-				{route: '#', label: 'Tags'},
-				{route: '#', label: 'Config'},
-			],
-			current: '/dashboard'
+      token: ''
     }
   },
 
@@ -26,7 +19,8 @@ export default{
    * This is called when the component is ready
    * You can find further documentation : http://vuejs.org/guide/instance.html#Lifecycle-Diagram
    */
-  ready () {
+  created () {
+		this.token = document.querySelector('meta[name=csrf_token]').getAttribute('content')
   },
 
   /**

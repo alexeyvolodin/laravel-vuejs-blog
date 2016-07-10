@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
+	<meta name="csrf_token" content="{{csrf_token()}}" id="csrf_token">
 	<title>Blog</title>
 
 	<!-- Fonts -->
@@ -26,6 +26,15 @@
 	</style>
 </head>
 <body id="dashboard">
+
+@if (session('notification'))
+	<notification type="{{session('notification')['type']}}"
+	              :dismiss="{{session('notification')['dismiss']}}"
+	              message="{{session('notification')['message']}}"
+	              title="{{session('notification')['title']}}"
+	></notification>
+@endif
+
 @include('shared.partials.navbar')
 
 @yield('content')

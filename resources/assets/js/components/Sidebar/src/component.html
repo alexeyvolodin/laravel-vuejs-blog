@@ -1,7 +1,7 @@
 <div class="col-sm-3 col-md-2 sidebar">
 	<ul class="nav nav-sidebar">
 		<li v-for="item in items" :class="{'active' : item.route == current}">
-			<a href="#">{{item.label}}</a>
+			<a href="{{item.route}}">{{item.label}}</a>
 		</li>
 	</ul>
 </div>

@@ -10530,6 +10530,63 @@ exports.default = {
    * Name of the component
    * More info: http://vuejs.org/api/#name
    */
+  name: 'CsrfToken',
+
+  /**
+   * The data object for the component it self
+   * More info: http://vuejs.org/api/#data
+   */
+  data: function data() {
+    return {
+      token: ''
+    };
+  },
+
+
+  /**
+   * This is called when the component is ready
+   * You can find further documentation : http://vuejs.org/guide/instance.html#Lifecycle-Diagram
+   */
+  created: function created() {
+    this.token = document.querySelector('meta[name=csrf_token]').getAttribute('content');
+  },
+
+
+  /**
+   * Child components of this one
+   * More info: http://vuejs.org/guide/components.html
+   */
+  components: {}
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<input class=\"csrf_token\" type=\"hidden\" name=\"_token\" value=\"{{token}}\">"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache["h1 {\n  color: #00a8ed;\n}"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-bd17070e", module.exports)
+  } else {
+    hotAPI.update("_v-bd17070e", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"vue":3,"vue-hot-reload-api":2,"vueify/lib/insert-css":4}],6:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert("h1 {\n  color: #00a8ed;\n}")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  /**
+   * Name of the component
+   * More info: http://vuejs.org/api/#name
+   */
   name: 'Dashboard',
 
   /**
@@ -10574,7 +10631,165 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-fe0408d0", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":3,"vue-hot-reload-api":2,"vueify/lib/insert-css":4}],6:[function(require,module,exports){
+},{"vue":3,"vue-hot-reload-api":2,"vueify/lib/insert-css":4}],7:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert("h1 {\n  color: #00a8ed;\n}")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _CsrfToken = require('../../CsrfToken');
+
+var _CsrfToken2 = _interopRequireDefault(_CsrfToken);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  /**
+   * Name of the component
+   * More info: http://vuejs.org/api/#name
+   */
+  name: 'Modal',
+
+  /**
+   * The data object for the component it self
+   * More info: http://vuejs.org/api/#data
+   */
+  data: function data() {
+    return {
+      title: 'Are you sure?',
+      msg: 'If you remove this item, you can\'t undo this action.',
+      action: ''
+    };
+  },
+
+
+  /**
+   * This is called when the component is ready
+   * You can find further documentation : http://vuejs.org/guide/instance.html#Lifecycle-Diagram
+   */
+  ready: function ready() {
+    var _this = this;
+
+    $('#modal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget); // Button that triggered the modal
+      _this.action = button.data('action');
+    });
+  },
+
+
+  /**
+   * Child components of this one
+   * More info: http://vuejs.org/guide/components.html
+   */
+  components: {
+    'csrf-token': _CsrfToken2.default
+  }
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" id=\"modal\" aria-labelledby=\"MyModal\">\n\t<div class=\"modal-dialog\">\n\t\t<div class=\"modal-content\">\n\t\t\t<div class=\"modal-header\">\n\t\t\t\t<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span\n\t\t\t\t\taria-hidden=\"true\">&times;</span></button>\n\t\t\t\t<h4 class=\"modal-title\">{{title}}</h4>\n\t\t\t</div>\n\t\t\t<form action=\"{{action}}\" method=\"POST\">\n\t\t\t\t<input type=\"hidden\" value=\"{{csrf_token}}\" name=\"_token\" />\n\t\t\t\t<csrf-token></csrf-token>\n\t\t\t\t<input type=\"hidden\" name=\"_method\" value=\"DELETE\">\n\t\t\t\t<div class=\"modal-body\">\n\t\t\t\t\t{{msg}}\n\t\t\t\t</div>\n\t\t\t\t<div class=\"modal-footer\">\n\t\t\t\t\t<button type=\"cancel\" class=\"btn btn-default\" data-dismiss=\"modal\">Cancel</button>\n\t\t\t\t\t<button type=\"submit\" class=\"btn btn-danger\">Yes, delete!</button>\n\t\t\t\t</div>\n\t\t\t</form>\n\t\t</div>\n\t</div>\n</div>"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache["h1 {\n  color: #00a8ed;\n}"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-2e4323f1", module.exports)
+  } else {
+    hotAPI.update("_v-2e4323f1", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"../../CsrfToken":5,"vue":3,"vue-hot-reload-api":2,"vueify/lib/insert-css":4}],8:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert(".notification {\n\tposition: fixed;\n\tright: 0;\n\ttop: 20px;\n\tz-index: 10000;\n}")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = {
+	/**
+  * Name of the component
+  * More info: http://vuejs.org/api/#name
+  */
+	name: 'Notification',
+
+	/**
+  * Public properties that can be passed to the component
+  */
+	props: {
+		title: { type: String, default: '' },
+		message: { type: String, default: '' },
+		type: { type: String, default: 'warning' },
+		dismiss: { type: Number, default: null, coerce: function coerce(value) {
+				return value * 1000;
+			}
+		}
+	},
+
+	computed: {
+		klass: function klass() {
+			return {
+				'alert-warning': this.type == 'warning',
+				'alert-success': this.type == 'success',
+				'alert-danger': this.type == 'danger',
+				'alert-info': this.type == 'info'
+			};
+		}
+	},
+
+	/**
+  * The data object for the component it self
+  * More info: http://vuejs.org/api/#data
+  */
+	data: function data() {
+		return {};
+	},
+
+
+	/**
+  * This is called when the component is ready
+  * You can find further documentation : http://vuejs.org/guide/instance.html#Lifecycle-Diagram
+  */
+	ready: function ready() {
+		var _this = this;
+
+		if (this.dismiss) {
+			setTimeout(function () {
+				$(_this.$el).alert('close');
+			}, this.dismiss);
+		}
+	},
+
+
+	/**
+  * Child components of this one
+  * More info: http://vuejs.org/guide/components.html
+  */
+	components: {}
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div class=\"alert alert-dismissible notification\" role=\"alert\" :class=\"klass\">\n\t<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n\t</button>\n\t<strong v-if=\"title\">{{title}}</strong> {{message}}\n</div>"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache[".notification {\n\tposition: fixed;\n\tright: 0;\n\ttop: 20px;\n\tz-index: 10000;\n}"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-3f7664fd", module.exports)
+  } else {
+    hotAPI.update("_v-3f7664fd", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"vue":3,"vue-hot-reload-api":2,"vueify/lib/insert-css":4}],9:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("h1 {\n  color: #00a8ed;\n}")
 'use strict';
@@ -10595,7 +10810,7 @@ exports.default = {
    */
   data: function data() {
     return {
-      items: [{ route: '/dashboard', label: 'Dashboard' }, { route: '#', label: 'Posts' }, { route: '#', label: 'Categories' }, { route: '#', label: 'Tags' }, { route: '#', label: 'Config' }],
+      items: [{ route: '/admin/dashboard', label: 'Dashboard' }, { route: '/admin/posts', label: 'Posts' }, { route: '#', label: 'Categories' }, { route: '#', label: 'Tags' }, { route: '#', label: 'Config' }],
       current: '/dashboard'
     };
   },
@@ -10615,7 +10830,7 @@ exports.default = {
   components: {}
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div class=\"col-sm-3 col-md-2 sidebar\">\n\t<ul class=\"nav nav-sidebar\">\n\t\t<li v-for=\"item in items\" :class=\"{'active' : item.route == current}\">\n\t\t\t<a href=\"#\">{{item.label}}</a>\n\t\t</li>\n\t</ul>\n</div>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div class=\"col-sm-3 col-md-2 sidebar\">\n\t<ul class=\"nav nav-sidebar\">\n\t\t<li v-for=\"item in items\" :class=\"{'active' : item.route == current}\">\n\t\t\t<a href=\"{{item.route}}\">{{item.label}}</a>\n\t\t</li>\n\t</ul>\n</div>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -10630,7 +10845,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-008a78a0", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":3,"vue-hot-reload-api":2,"vueify/lib/insert-css":4}],7:[function(require,module,exports){
+},{"vue":3,"vue-hot-reload-api":2,"vueify/lib/insert-css":4}],10:[function(require,module,exports){
 'use strict';
 
 var Vue = require('vue');
@@ -10640,11 +10855,14 @@ Vue.config.devtools = true;
 new Vue({
 	el: '#dashboard',
 	components: {
+		'csrf-token': require('./components/CsrfToken'),
 		'dashboard': require('./components/Dashboard'),
-		'sidebar': require('./components/Sidebar')
+		'sidebar': require('./components/Sidebar'),
+		'modal': require('./components/Modal'),
+		'notification': require('./components/Notification')
 	}
 });
 
-},{"./components/Dashboard":5,"./components/Sidebar":6,"vue":3}]},{},[7]);
+},{"./components/CsrfToken":5,"./components/Dashboard":6,"./components/Modal":7,"./components/Notification":8,"./components/Sidebar":9,"vue":3}]},{},[10]);
 
 //# sourceMappingURL=dashboard.js.map
